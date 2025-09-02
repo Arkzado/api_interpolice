@@ -17,9 +17,6 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
   res.json({ mensaje: 'No hay nada aquí, usa /api/ciudadanos o /api/auth 🚀' });
 });
-app.use((req, res) => {
-  res.status(404).json({ error: 'Ruta no encontrada 🚫' });
-});
 
 
 // Rutas
@@ -28,5 +25,10 @@ app.use('/api/ciudadanos', ciudadanoRoutes);
 
 // Archivos estáticos (uploads de fotos y QR)
 app.use('/uploads', express.static('uploads'));
+
+app.use((req, res) => {
+  res.status(404).json({ error: 'Ruta no encontrada 🚫' });
+});
+
 
 export default app;
